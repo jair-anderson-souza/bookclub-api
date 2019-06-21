@@ -5,7 +5,7 @@
  */
 package io.github.jass2125.beer.api.beer.repository;
 
-import io.github.jass2125.beer.api.beer.resource.BeerFilter;
+import io.github.jass2125.beer.api.beer.filters.BeerFilter;
 import io.github.jass2125.beer.api.cerveja.Beer;
 import java.util.Arrays;
 import java.util.List;
@@ -52,14 +52,99 @@ public class BeerRepository {
                     .append("&");
 
         }
+        if (beerFilter.getAbvGt() != null) {
+            parameters
+                    .append("abv_gt=")
+                    .append(beerFilter.getAbvGt())
+                    .append("&");
+
+        }
+        if (beerFilter.getAbvLt() != null) {
+            parameters
+                    .append("abv_lt=")
+                    .append(beerFilter.getAbvLt())
+                    .append("&");
+
+        }
+        if (beerFilter.getIbuGt() != null) {
+            parameters
+                    .append("ibu_gt=")
+                    .append(beerFilter.getIbuGt())
+                    .append("&");
+
+        }
+        if (beerFilter.getIbuLt() != null) {
+            parameters
+                    .append("ibu_lt=")
+                    .append(beerFilter.getIbuLt())
+                    .append("&");
+
+        }
+        if (beerFilter.getEbcGt() != null) {
+            parameters
+                    .append("ebc_gt=")
+                    .append(beerFilter.getEbcGt())
+                    .append("&");
+
+        }
+        if (beerFilter.getEbcLt() != null) {
+            parameters
+                    .append("ebc_lt=")
+                    .append(beerFilter.getEbcLt())
+                    .append("&");
+
+        }
+        if (beerFilter.getYeast() != null) {
+            parameters
+                    .append("yeast")
+                    .append(beerFilter.getYeast())
+                    .append("&");
+
+        }
+        if (beerFilter.getBrewedBefore() != null) {
+            parameters
+                    .append("brewed_before=")
+                    .append(beerFilter.getBrewedBefore())
+                    .append("&");
+
+        }
+        if (beerFilter.getBrewedAfter() != null) {
+            parameters
+                    .append("brewed_after=")
+                    .append(beerFilter.getBrewedAfter())
+                    .append("&");
+
+        }
+        if (beerFilter.getHops() != null) {
+            parameters
+                    .append("hops=")
+                    .append(beerFilter.getHops())
+                    .append("&");
+
+        }
+        if (beerFilter.getMalt() != null) {
+            parameters
+                    .append("malt=")
+                    .append(beerFilter.getMalt())
+                    .append("&");
+
+        }
+        if (beerFilter.getIds() != null) {
+            parameters
+                    .append("ids=")
+                    .append(beerFilter.getIds())
+                    .append("&");
+
+        }
         final String urlFinal = this.url + parameters.toString() + "page=" + page + "&per_page=" + size;
         response = restTemplate.exchange(urlFinal, HttpMethod.GET, requestEntity, Beer[].class, headers);
 
         Beer[] body = response.getBody();
+
         return Arrays.asList(body);
     }
 
 //    Login - Validação - Segurança
-    //Listagem - Filtro, paginação
-    //
+//Listagem - Filtro, paginação
+//
 }

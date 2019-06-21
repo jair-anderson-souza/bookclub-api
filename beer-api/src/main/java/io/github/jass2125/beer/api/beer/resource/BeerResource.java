@@ -1,5 +1,6 @@
 package io.github.jass2125.beer.api.beer.resource;
 
+import io.github.jass2125.beer.api.beer.filters.BeerFilter;
 import io.github.jass2125.beer.api.beer.service.BeerService;
 import io.github.jass2125.beer.api.cerveja.Beer;
 import java.util.List;
