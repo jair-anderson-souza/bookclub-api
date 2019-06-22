@@ -1,0 +1,61 @@
+diff --git a/beer-api/src/main/java/io/github/jass2125/beer/api/model/user/User.java b/beer-api/src/main/java/io/github/jass2125/beer/api/model/user/User.java
+index 241aa28..9578acc 100644
+--- a/beer-api/src/main/java/io/github/jass2125/beer/api/model/user/User.java
++++ b/beer-api/src/main/java/io/github/jass2125/beer/api/model/user/User.java
+@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
+ import javax.persistence.GenerationType;
+ import javax.persistence.Id;
+ import javax.persistence.Table;
+-import javax.validation.constraints.NotNull;
++import javax.validation.constraints.NotEmpty;
+ 
+ @Entity
+ @Table(name = "t_users")
+@@ -18,13 +18,13 @@ public class User implements Serializable {
+ 
+     @Id @GeneratedValue(strategy = GenerationType.AUTO)
+     private Long id;
+-    @NotNull(message = "O nome deve ser preenchido")
++    @NotEmpty(message = "O nome deve ser preenchido")
+     private String name;
+-    @NotNull(message = "O nome de usuário deve ser preenchido")
++    @NotEmpty(message = "O nome de usuário deve ser preenchido")
+     private String username;
+-    @NotNull(message = "A senha deve ser preenchida")
++    @NotEmpty(message = "A senha deve ser preenchida")
+     private String password;
+-    @NotNull(message = "O perfil deve ser preenchido")
++    @NotEmpty(message = "O perfil deve ser preenchido")
+     @ElementCollection(fetch = FetchType.EAGER)
+     private List<Role> roles;
+ 
+diff --git a/beer-api/src/main/resources/application.properties b/beer-api/src/main/resources/application.properties
+index 927e307..81a93fe 100644
+--- a/beer-api/src/main/resources/application.properties
++++ b/beer-api/src/main/resources/application.properties
+@@ -16,9 +16,9 @@
+ spring.jpa.database=POSTGRESQL
+ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+ spring.datasource.driverClassName = org.postgresql.Driver
+-spring.datasource.url=postgres://wryfcekviybsfz:f46e1b9307a03e1fae97acf1e5022ee97ea9f5b7ceb683d32ac76096030df016@ec2-23-21-186-85.compute-1.amazonaws.com:5432/d1dresvrpupo58
+-spring.datasource.username=wryfcekviybsfz
+-spring.datasource.password=f46e1b9307a03e1fae97acf1e5022ee97ea9f5b7ceb683d32ac76096030df016
++spring.datasource.url=postgres://rvkfmkimwljril:ff07201c6134087b7d9fcb80112a4a90dfbefa769a8370d3ac14cb5b42c5c345@ec2-54-225-116-36.compute-1.amazonaws.com:5432/dcgth2n96jvtnc
++spring.datasource.username=rvkfmkimwljril
++spring.datasource.password=ff07201c6134087b7d9fcb80112a4a90dfbefa769a8370d3ac14cb5b42c5c345
+ spring.jpa.properties.hibernate.show_sql=false
+ spring.jpa.properties.hibernate.use_sql_comments=true
+ spring.jpa.properties.hibernate.format_sql=true
+diff --git a/beer-front/src/app/components/login/login.component.html b/beer-front/src/app/components/login/login.component.html
+index 6cc364c..9397c3b 100644
+--- a/beer-front/src/app/components/login/login.component.html
++++ b/beer-front/src/app/components/login/login.component.html
+@@ -7,7 +7,7 @@
+     <label><b>Password</b></label>
+     <input type="password" placeholder="Enter Password" [(ngModel)]="user.password" name="psw" required>
+ 
+-    <button (click)="login(); formLogin.reset();">Login</button>
++    <button  [disabled]="formLogin.form.invalid" (click)="login(); formLogin.reset();">Login</button>
+   </div>
+ 
+ </form>

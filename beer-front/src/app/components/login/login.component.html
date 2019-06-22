@@ -7,7 +7,7 @@
     <label><b>Password</b></label>
     <input type="password" placeholder="Enter Password" [(ngModel)]="user.password" name="psw" required>
 
-    <button (click)="login(); formLogin.reset();">Login</button>
+    <button  [disabled]="formLogin.form.invalid" (click)="login(); formLogin.reset();">Login</button>
   </div>
 
 </form>

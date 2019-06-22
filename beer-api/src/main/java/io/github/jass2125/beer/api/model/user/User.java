@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "t_users")
@@ -18,13 +18,13 @@ public class User implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotNull(message = "O nome deve ser preenchido")
+    @NotEmpty(message = "O nome deve ser preenchido")
     private String name;
-    @NotNull(message = "O nome de usuário deve ser preenchido")
+    @NotEmpty(message = "O nome de usuário deve ser preenchido")
     private String username;
-    @NotNull(message = "A senha deve ser preenchida")
+    @NotEmpty(message = "A senha deve ser preenchida")
     private String password;
-    @NotNull(message = "O perfil deve ser preenchido")
+    @NotEmpty(message = "O perfil deve ser preenchido")
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Role> roles;
 
