@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BeerFilter } from 'src/app/model/beer-filter-model';
+import { url } from 'src/app/util/api';
 
 @Injectable()
 export class BeerService {
@@ -66,16 +67,9 @@ export class BeerService {
 
   public searchBeers(page: number, size: number, beerFilter: BeerFilter) {
     let params = this.criaUrlBuscaContrato(beerFilter);
-    let url = `http://localhost:8080/beer?page=${page}&size=${size}${params}`;
-    return this.httpClient.get(url, { headers: new HttpHeaders({'Authorization': localStorage.getItem('token') }) });
+    let uri = `${url}beer?page=${page}&size=${size}${params}`;
+    return this.httpClient.get(uri, { headers: new HttpHeaders({'Authorization': localStorage.getItem('token') }) });
   }
 
-  getDefaultHeader(): HttpHeaders {
-    let headers = new HttpHeaders();
-    headers.append('Authorization', localStorage.getItem("token"));
-    headers.append('Content-Type', 'application/json');
-    debugger;
-    return headers;
-  }
 
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ErrorService } from './error.service';
+import { url } from 'src/app/util/api';
 
 @Injectable()
 export class UserService {
@@ -18,7 +19,7 @@ export class UserService {
 
   public login(user: any): Observable<any> {
     this.errorService.clear();
-    return this.httpClient.post("http://localhost:8080/users/login", user, { observe: 'response' })
+    return this.httpClient.post(`${url}users/login`, user, { observe: 'response' })
       .pipe(
         catchError(this.handleError.bind(this))
       );
@@ -26,7 +27,7 @@ export class UserService {
 
   public new(user: any): Observable<any> {
     this.errorService.clear();
-    return this.httpClient.post("http://localhost:8080/users/new", user, { observe: 'response' })
+    return this.httpClient.post(`${url}users/new`, user, { observe: 'response' })
       .pipe(
         catchError(this.handleError.bind(this))
       );
