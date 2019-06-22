@@ -10,6 +10,5 @@ import { BeerService } from 'src/services/beer.service';
 export class AppComponent {
 
   constructor(private beerService: BeerService) {
-    this.beerService.searchBeers();
   }
 }

@@ -1,4 +1,4 @@
-package io.github.jass2125.beer.api.infraestrutura.requisicao;
+package io.github.jass2125.beer.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

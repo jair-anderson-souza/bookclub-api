@@ -1,8 +1,8 @@
 package io.github.jass2125.beer.api.beer.resource;
 
 import io.github.jass2125.beer.api.beer.filters.BeerFilter;
-import io.github.jass2125.beer.api.beer.service.BeerService;
-import io.github.jass2125.beer.api.cerveja.Beer;
+import io.github.jass2125.beer.api.model.beer.Beer;
+import io.github.jass2125.beer.api.service.BeerService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +26,4 @@ public class BeerResource {
         return beers;
     }
 
-//Filtro por nome
-//https://api.punkapi.com/v2/beers?beer_name=Buzz
 }

@@ -1,0 +1,19 @@
+<form #formLogin="ngForm">
+
+  <div>
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" [(ngModel)]="user.username" name="username" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" [(ngModel)]="user.password" name="psw" required>
+
+    <button (click)="login(); formLogin.reset();">Login</button>
+  </div>
+
+</form>
+
+<div *ngIf="this.errorService.count() > 0">
+  <div *ngFor="let message of this.errorService.getMessages()">
+    <p>{{ message }}</p>
+  </div>
+</div>

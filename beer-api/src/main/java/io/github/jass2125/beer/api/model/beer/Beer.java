@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package io.github.jass2125.beer.api.cerveja;
+package io.github.jass2125.beer.api.model.beer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- *
- * @author jairanderson
- */
 public class Beer implements Serializable {
 
     private Long id;

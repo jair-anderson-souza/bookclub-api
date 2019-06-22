@@ -1,15 +1,13 @@
 package io.github.jass2125.beer.api.infraestrutura.excessao;
 
+import io.github.jass2125.beer.api.security.LoginException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,10 +19,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@Primary
-@Configuration
 @ControllerAdvice
-public class ManipuladorExcessao extends ResponseEntityExceptionHandler {
+public class ExceptionGlobalHandler extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler({LoginException.class})
+    public ResponseEntity<Object> handleLoginException(LoginException ex, WebRequest request) {
+
+        final List<String> errors = new ArrayList<String>();
+
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
 
     /**
      * Retorna um JSON com a lista de invalidações encontradas

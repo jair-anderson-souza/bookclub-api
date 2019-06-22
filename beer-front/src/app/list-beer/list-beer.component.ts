@@ -5,6 +5,18 @@ export class BeerFilter {
 
   name: string;
   food: string;
+  abvGt: number;
+  abvLt: number;
+  ibuGt: number;
+  ibuLt: number;
+  ebcGt: number;
+  ebcLt: number;
+  yeast: string;
+  brewedBefore: Date;
+  brewedAfter: Date;
+  hops: string;
+  malt: string;
+  ids: string;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
@@ -19,13 +31,17 @@ export class BeerFilter {
 })
 
 export class ListBeerComponent implements OnInit {
-  
-  constructor(private beerService: BeerService) {
-    this.beerService.searchBeers();
-  }
+  private beerFilter = new BeerFilter({brewedBefore: new Date()});
+  private page = 1;
+  private size = 5;
+
+
+  constructor(private beerService: BeerService) { }
 
   ngOnInit() {
-    
+    this.beerService.searchBeers(this.page, this.size, this.beerFilter).subscribe((data) => {
+      console.log(JSON.stringify(data));
+    });
   }
 
 }

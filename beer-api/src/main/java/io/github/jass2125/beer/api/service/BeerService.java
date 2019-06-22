@@ -1,8 +1,8 @@
-package io.github.jass2125.beer.api.beer.service;
+package io.github.jass2125.beer.api.service;
 
 import io.github.jass2125.beer.api.beer.filters.BeerFilter;
-import io.github.jass2125.beer.api.beer.repository.BeerRepository;
-import io.github.jass2125.beer.api.cerveja.Beer;
+import io.github.jass2125.beer.api.repository.BeerRepository;
+import io.github.jass2125.beer.api.model.beer.Beer;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
