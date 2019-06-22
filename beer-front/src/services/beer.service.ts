@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { BeerFilter } from 'src/app/list-beer/list-beer.component';
-import { DateService } from './date.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BeerFilter } from 'src/app/model/beer-filter-model';
 
 @Injectable()
 export class BeerService {
 
-  constructor(private httpClient: HttpClient,
-    private dateService: DateService) { }
+  constructor(private httpClient: HttpClient) { }
 
   criaUrlBuscaContrato(beerFilter: BeerFilter) {
 
     let url = "";
 
-    if (beerFilter != null) {
+    if (beerFilter && beerFilter !== undefined) {
 
       if (beerFilter.name) {
         url += '&' + 'name=' + beerFilter.name;
@@ -62,12 +60,22 @@ export class BeerService {
         url += '&' + 'ids=' + beerFilter.ids;
       }
 
-      return url;
     }
+    return url;
   }
 
   public searchBeers(page: number, size: number, beerFilter: BeerFilter) {
-    return this.httpClient.get(`http://localhost:8080/beer?page=${page}&size=${size}${this.criaUrlBuscaContrato(beerFilter)}`);
+    let params = this.criaUrlBuscaContrato(beerFilter);
+    let url = `http://localhost:8080/beer?page=${page}&size=${size}${params}`;
+    return this.httpClient.get(url, { headers: new HttpHeaders({'Authorization': localStorage.getItem('token') }) });
+  }
+
+  getDefaultHeader(): HttpHeaders {
+    let headers = new HttpHeaders();
+    headers.append('Authorization', localStorage.getItem("token"));
+    headers.append('Content-Type', 'application/json');
+    debugger;
+    return headers;
   }
 
 }

@@ -17,7 +17,7 @@
   
 </select>
 
-<input type="text" [(ngModel)]="searchField" (keyup)="search($event)"/>
+<input type="text" [(ngModel)]="searchField" (keyup)="search()"/>
 
 <div *ngFor="let beer of beers">
   {{ beer | json }}

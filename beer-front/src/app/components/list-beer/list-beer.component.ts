@@ -1,28 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BeerFilter } from 'src/app/model/beer-filter-model';
 import { BeerService } from 'src/services/beer.service';
-
-export class BeerFilter {
-
-  name: string;
-  food: string;
-  abvGt: number;
-  abvLt: number;
-  ibuGt: number;
-  ibuLt: number;
-  ebcGt: number;
-  ebcLt: number;
-  yeast: string;
-  brewedBefore: string;
-  brewedAfter: string;
-  hops: string;
-  malt: string;
-  ids: string;
-
-  constructor(values: Object = {}) {
-    Object.assign(this, values);
-  }
-
-}
 
 @Component({
   selector: 'app-list-beer',
@@ -44,12 +22,11 @@ export class ListBeerComponent implements OnInit {
 
   public ngOnInit() {
     this.beerService.searchBeers(this.page, this.size, this.beerFilter).subscribe((data) => {
-      // console.log(JSON.stringify(data));
       this.beers = data;
     });
   }
 
-  public search(){
+  public search() {
     this.beerFilter = new BeerFilter();
     this.beerFilter[this.type] = this.searchField;
     this.beerService.searchBeers(this.page, this.size, this.beerFilter).subscribe((data) => {

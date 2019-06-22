@@ -1,7 +1,9 @@
 package io.github.jass2125.beer.api.exceptions;
 
-import io.github.jass2125.beer.api.security.LoginException;
-import io.github.jass2125.beer.api.service.IdInvalidoException;
+import io.github.jass2125.beer.api.beer.exceptions.IdInvalidoException;
+import io.github.jass2125.beer.api.security.exceptions.TokenExpiratedException;
+import io.github.jass2125.beer.api.user.exceptions.EmailExistsException;
+import io.github.jass2125.beer.api.user.exceptions.LoginException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,15 +36,18 @@ public class ExceptionGlobalHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
-    /**
-     * Retorna um JSON com a lista de invalidações encontradas
-     *
-     * @param ex
-     * @param headers
-     * @param status
-     * @param request
-     * @return
-     */
+    @ExceptionHandler({EmailExistsException.class})
+    public ResponseEntity<Object> handleEmailExistsException(EmailExistsException ex, WebRequest request) {
+
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
+    @ExceptionHandler({TokenExpiratedException.class})
+    public ResponseEntity<Object> handleTokenExpiratedException(TokenExpiratedException ex, WebRequest request) {
+
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
             HttpHeaders headers, HttpStatus status, WebRequest request) {

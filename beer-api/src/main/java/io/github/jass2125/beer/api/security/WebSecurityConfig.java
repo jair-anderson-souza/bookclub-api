@@ -3,6 +3,7 @@ package io.github.jass2125.beer.api.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,15 +25,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests()//
+        http.authorizeRequests()
                 .antMatchers("/users/login").permitAll()
-                .antMatchers("/user/signup").permitAll()
+                .antMatchers("/users/new").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "**").permitAll()
                 .anyRequest().authenticated();
-//
 ////        http.exceptionHandling().accessDeniedPage("/users/login");
-//        // Apply JWT
         http.apply(new JwtTokenFilterConfigurer(jwtTokenProvider));
-//
     }
 
     @Override
@@ -40,7 +39,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-//
 
     @Bean
     public PasswordEncoder passwordEncoder() {

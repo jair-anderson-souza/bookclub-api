@@ -1,4 +1,4 @@
-package io.github.jass2125.beer.api.security;
+package io.github.jass2125.beer.api.user.exceptions;
 
 public class LoginException extends RuntimeException {
 

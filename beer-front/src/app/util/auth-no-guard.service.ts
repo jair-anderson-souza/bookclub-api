@@ -4,17 +4,17 @@ import { CanActivate, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardService implements CanActivate {
+export class AuthNoGuardService implements CanActivate {
 
   constructor(private router: Router) { }
   
-  canActivate(){
-    let token = localStorage.getItem('token');
+  public canActivate(): boolean {
+    const token = localStorage.getItem('token');
     if(token){
-      return true;
-    }else {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/list');
       return false;
+    }else {
+      return true;
     }
 
   }

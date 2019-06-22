@@ -1,4 +1,4 @@
-package io.github.jass2125.beer.api.service;
+package io.github.jass2125.beer.api.beer.exceptions;
 
 public class IdInvalidoException extends RuntimeException {
 

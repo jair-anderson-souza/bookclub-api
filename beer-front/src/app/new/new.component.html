@@ -1,0 +1,33 @@
+<form #formNew="ngForm">
+
+  <div>
+    <label><b>Nome</b></label>
+    <input type="text" placeholder="Nome" [(ngModel)]="user.name" name="name" required>
+
+    <label><b>Nome de Usuário</b></label>
+    <input type="text" placeholder="Nome de Usuário" [(ngModel)]="user.username" name="username" required>
+
+    <label><b>Senha</b></label>
+    <input type="password" placeholder="Senha" [(ngModel)]="user.password" name="password" required>
+
+    <label><b>Perfil</b></label>
+    <select name=roles [(ngModel)]="role" required>
+      <option value="CLIENT">Cliente</option>
+    </select>
+
+    <button [disabled]="formNew.form.invalid" (click)="newUser(); formNew.reset();">Login</button>
+  </div>
+
+</form>
+
+<div *ngIf="this.errorService.count() > 0">
+  <div *ngFor="let message of this.errorService.getMessages()">
+    <p>{{ message }}</p><br/>
+  </div>
+</div>
+
+<br/>
+<br/>
+<br/>
+
+<button (click)="irParaLogin()">Ir para Login</button>

@@ -6,18 +6,25 @@ import java.util.Objects;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "t_users")
 public class User implements Serializable {
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull(message = "O nome deve ser preenchido")
     private String name;
+    @NotNull(message = "O nome de usuário deve ser preenchido")
     private String username;
+    @NotNull(message = "A senha deve ser preenchida")
     private String password;
+    @NotNull(message = "O perfil deve ser preenchido")
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Role> roles;
 
@@ -84,6 +91,11 @@ public class User implements Serializable {
         }
         final User other = (User) obj;
         return Objects.equals(this.id, other.id);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + ", roles=" + roles + '}';
     }
 
 }

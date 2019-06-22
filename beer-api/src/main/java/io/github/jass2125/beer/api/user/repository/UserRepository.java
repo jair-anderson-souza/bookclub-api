@@ -1,4 +1,4 @@
-package io.github.jass2125.beer.api.model.user.repository;
+package io.github.jass2125.beer.api.user.repository;
 
 import io.github.jass2125.beer.api.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
