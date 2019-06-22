@@ -1,11 +1,11 @@
-package io.github.jass2125.beer.api.infraestrutura.excessao;
+package io.github.jass2125.beer.api.exceptions;
 
 import io.github.jass2125.beer.api.security.LoginException;
+import io.github.jass2125.beer.api.service.IdInvalidoException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.http.HttpHeaders;
@@ -25,19 +25,27 @@ public class ExceptionGlobalHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({LoginException.class})
     public ResponseEntity<Object> handleLoginException(LoginException ex, WebRequest request) {
 
-        final List<String> errors = new ArrayList<String>();
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
+    @ExceptionHandler({IdInvalidoException.class})
+    public ResponseEntity<Object> handleIdInvalidoException(IdInvalidoException ex, WebRequest request) {
 
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
     /**
      * Retorna um JSON com a lista de invalidações encontradas
+     *
+     * @param ex
+     * @param headers
+     * @param status
+     * @param request
+     * @return
      */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
             HttpHeaders headers, HttpStatus status, WebRequest request) {
-
-        ex.printStackTrace();
 
         List<String> erros = ex.getBindingResult().getAllErrors().stream().map(ObjectError::getDefaultMessage)
                 .collect(Collectors.toList());
@@ -51,13 +59,11 @@ public class ExceptionGlobalHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleConstraintViolationException(final ConstraintViolationException ex,
             final WebRequest request) {
 
-        ex.printStackTrace();
-
-        final List<String> errors = new ArrayList<String>();
-        for (final ConstraintViolation<?> violation : ex.getConstraintViolations()) {
+        final List<String> errors = new ArrayList<>();
+        ex.getConstraintViolations().stream().forEach((violation) -> {
             errors.add(violation.getRootBeanClass().getName() + " " + violation.getPropertyPath() + ": "
                     + violation.getMessage());
-        }
+        });
 
         return ResponseEntity.badRequest().body(errors);
     }

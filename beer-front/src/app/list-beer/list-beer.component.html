@@ -1,3 +1,24 @@
-<p>
-  list-beer works!
-</p>
+<select [(ngModel)]="type">
+  <option value="name">Name</option>
+  <option value="food">Food</option>
+  <option value="abvGt">AbvGt</option>
+  <option value="abvLt">AbvLt</option>
+  <option value="ibuGt">IbuGt</option>
+  <option value="ibuLt">IbuLt</option>
+  <option value="ebcGt">EbcGt</option>
+  <option value="ebcLt">EbcLt</option>
+  <option value="yeast">Yeast</option>
+  <option value="brewedBefore">Brewed Before</option>
+  <option value="brewedAfter">brewed After</option>
+  <option value="hops">Hops</option>
+  <option value="ebcLt">EbcLt</option>
+  <option value="malt">Malt</option>
+  <option value="ids">Ids</option>
+  
+</select>
+
+<input type="text" [(ngModel)]="searchField" (keyup)="search($event)"/>
+
+<div *ngFor="let beer of beers">
+  {{ beer | json }}
+</div>

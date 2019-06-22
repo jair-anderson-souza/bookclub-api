@@ -18,4 +18,12 @@ public class BeerService {
         return searchAll;
     }
 
+    public Beer searchById(Integer id) {
+        Beer[] beer = this.beerRepository.searchById(id);
+        if(beer.length <= 0){
+            throw new IdInvalidoException("Não existe essa cerveja");
+        }
+        return beer[0];
+    }
+
 }

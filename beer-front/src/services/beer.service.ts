@@ -15,8 +15,6 @@ export class BeerService {
 
     if (beerFilter != null) {
 
-      url = "?";
-
       if (beerFilter.name) {
         url += '&' + 'name=' + beerFilter.name;
       }
@@ -26,33 +24,33 @@ export class BeerService {
       }
 
       if (beerFilter.abvGt) {
-        url += '&' + 'abv_gt=' + beerFilter.abvGt;
+        url += '&' + 'abvGt=' + beerFilter.abvGt;
       }
 
       if (beerFilter.abvLt) {
-        url += '&' + 'abv_lt=' + beerFilter.abvLt;
+        url += '&' + 'abvLt=' + beerFilter.abvLt;
       }
       if (beerFilter.ibuGt) {
-        url += '&' + 'ibu_gt=' + beerFilter.ibuGt;
+        url += '&' + 'ibuGt=' + beerFilter.ibuGt;
       }
       if (beerFilter.ibuLt) {
-        url += '&' + 'ibu_lt=' + beerFilter.ibuLt;
+        url += '&' + 'ibuLt=' + beerFilter.ibuLt;
       }
       if (beerFilter.ebcGt) {
-        url += '&' + 'ebc_gt=' + beerFilter.ebcGt;
+        url += '&' + 'ebcGt=' + beerFilter.ebcGt;
       }
       if (beerFilter.ebcLt) {
-        url += '&' + 'ebc_lt=' + beerFilter.ebcLt;
+        url += '&' + 'ebcLt=' + beerFilter.ebcLt;
       }
       if (beerFilter.yeast) {
         url += '&' + 'yeast=' + beerFilter.yeast;
       }
       if (beerFilter.brewedBefore) {
-        let data = this.dateService.getDateAtualConvertido(beerFilter.brewedBefore);
-        url += '&' + 'brewedBefore=' + data
+        // let data = this.dateService.getDateAtualConvertido(beerFilter.brewedBefore);
+        url += '&' + 'brewedBefore=' + beerFilter.brewedBefore
       }
       if (beerFilter.brewedAfter) {
-        url += '&' + 'brewed_after=' + beerFilter.brewedAfter;
+        url += '&' + 'brewedAfter=' + beerFilter.brewedAfter;
       }
       if (beerFilter.hops) {
         url += '&' + 'hops=' + beerFilter.hops;
@@ -69,7 +67,7 @@ export class BeerService {
   }
 
   public searchBeers(page: number, size: number, beerFilter: BeerFilter) {
-    return this.httpClient.get(`http://localhost:8080/beer?page=${page}&size=${size}&${this.criaUrlBuscaContrato(beerFilter)}`);
+    return this.httpClient.get(`http://localhost:8080/beer?page=${page}&size=${size}${this.criaUrlBuscaContrato(beerFilter)}`);
   }
 
 }

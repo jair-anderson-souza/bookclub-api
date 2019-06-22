@@ -17,26 +17,23 @@ export class TokenInterceptor implements HttpInterceptor {
 
     let authReq = req;
     let token = localStorage.getItem('token');
-    if (token != null) {
-      authReq = req.clone({ headers: req.headers.set('Authorization', token) });
+    // if (token != null) {
+    //   authReq = req.clone({ headers: req.headers.set('Authorization', token) });
+    // }
+
+    return next.handle(authReq);
     }
 
-    return next.handle(req).pipe(
-      map((event: HttpEvent<any>) => {
-        if (event instanceof HttpResponse) {
-          console.log('event--->>>', event);
-        }
-        return event;
-      }),
-      catchError((error: HttpErrorResponse) => {
-        let data = {};
-        data = {
-          reason: error && error.error ? error.error : '',
-          status: error.status
-        };
-        this.errorService.addMessage(error.error);
-        return Observable.throw(data);
-      }));
-  }
+  //   return next.handle(authReq).pipe(
+  //     catchError((error: HttpErrorResponse) => {
+  //       let data = {};
+  //       data = {
+  //         reason: error && error.error ? error.error : '',
+  //         status: error.status
+  //       };
+  //       this.errorService.addMessage(error.error);
+  //       return Observable.throw(data);
+  //     }));
+  // }
 
 }

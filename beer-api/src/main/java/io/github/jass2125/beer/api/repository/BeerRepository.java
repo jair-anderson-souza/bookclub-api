@@ -143,8 +143,17 @@ public class BeerRepository {
 
         return Arrays.asList(body);
     }
+    
 
-//    Login - Validação - Segurança
-//Listagem - Filtro, paginação
-//
+    public Beer[] searchById(Integer id) {
+        try {
+            final String urlFinal = this.url + "/" + id;
+            response = restTemplate.exchange(urlFinal, HttpMethod.GET, requestEntity, Beer[].class, headers);
+            Beer[] beer = response.getBody();
+            return beer;
+        } catch (Exception e) {
+            return new Beer[]{};
+        }
+    }
+
 }
