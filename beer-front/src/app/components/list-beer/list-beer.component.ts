@@ -13,12 +13,15 @@ export class ListBeerComponent implements OnInit {
   public beerFilter: BeerFilter;
   public page = 1;
   private size = 50;
+  numberMinPages = 1;
+  numberMaxPages = 7;
   public beers: any = [];
   public searchField: any;
-  public type: any;
+  public type = '';
 
 
-  constructor(private beerService: BeerService) { }
+  constructor(private beerService: BeerService) { 
+  }
 
   public ngOnInit() {
     this.beerService.searchBeers(this.page, this.size, this.beerFilter).subscribe((data) => {
@@ -31,20 +34,20 @@ export class ListBeerComponent implements OnInit {
     this.beerFilter[this.type] = this.searchField;
     this.beerService.searchBeers(this.page, this.size, this.beerFilter).subscribe((data) => {
       this.beers = data;
+      console.log(data);
     });
+    this.page = 1;
   }
 
   public changePage(page) {
     this.page = page;
-    this.beerFilter = new BeerFilter();
-    this.beerFilter[this.type] = this.searchField;
     this.beerService.searchBeers(this.page, this.size, this.beerFilter).subscribe((data) => {
       this.beers = data;
     });
   }
 
   public backIndex() {
-    if (this.page > 1) {
+    if (this.page > this.numberMinPages) {
       this.page = this.page - 1;
     }
 
@@ -52,7 +55,7 @@ export class ListBeerComponent implements OnInit {
   }
 
   public goToPage() {
-    if (this.page < 7) {
+    if (this.page < this.numberMaxPages) {
       this.page = this.page + 1;
     }
     this.changePage(this.page);

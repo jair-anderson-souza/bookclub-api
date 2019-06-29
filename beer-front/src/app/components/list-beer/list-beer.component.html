@@ -7,7 +7,8 @@
 
     <div class="form-group">
       <label for="selectOptions"></label>
-      <select class="form-control" [(ngModel)]="type">
+      <select class="form-control" [(ngModel)]="type" (change)="search()">
+        <option value=""></option>
         <option value="name">Name</option>
         <option value="food">Food</option>
         <option value="abvGt">AbvGt</option>
@@ -57,13 +58,13 @@
     </table>
   </div>
 
-  <nav style="text-align: center; width: 100px;">
+  <nav>
     <ul class="pagination" name="page">
       <li class="page-item">
         <a class="page-link" [routerLink]="" (click)="backIndex();">Prev</a>
       </li>
       <li class=" page-item">
-        <a [routerLink]="" class="page-link">1</a>
+        <a [routerLink]="" (click)="changePage(1);" class="page-link">1</a>
       </li>
       <li class=" page-item" (click)="changePage(2);">
         <a [routerLink]="" class="page-link">2</a>
