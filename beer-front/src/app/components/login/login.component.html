@@ -1,27 +1,28 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <form #formLogin="ngForm">
-        <h1>Login</h1>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <div class="control">
-            <input class="form-control" type="text" placeholder="Enter Username" [(ngModel)]="user.username"
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <form #formLogin="ngForm">
+          <h1>Login</h1>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <div class="control">
+              <input class="form-control" type="text" placeholder="Enter Username" [(ngModel)]="user.username"
               name="username" id="username" required>
+            </div>
           </div>
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <div class="control">
-            <input class="form-control" type="password" placeholder="Enter Password" [(ngModel)]="user.password"
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="control">
+              <input class="form-control" type="password" placeholder="Enter Password" [(ngModel)]="user.password"
               name="password" id="password" required>
+            </div>
           </div>
-        </div>
-
+          
         <button [disabled]="formLogin.form.invalid" class="btn btn-success btn-lg"
-          (click)="login(); formLogin.reset();">Login</button>
-
+        (click)="login(); formLogin.reset();">Login</button>
+        
         <br/>
         <br/>
 
@@ -39,8 +40,8 @@
 
 
 <!-- <form #formLogin="ngForm">
-    
-    <div>
+  
+  <div>
     <label><b>Username</b></label>
     <input type="text" placeholder="Enter Username" [(ngModel)]="user.username" name="username" required>
     

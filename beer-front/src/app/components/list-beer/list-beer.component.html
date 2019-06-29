@@ -1,27 +1,44 @@
-<select [(ngModel)]="type">
-  <option value="name">Name</option>
-  <option value="food">Food</option>
-  <option value="abvGt">AbvGt</option>
-  <option value="abvLt">AbvLt</option>
-  <option value="ibuGt">IbuGt</option>
-  <option value="ibuLt">IbuLt</option>
-  <option value="ebcGt">EbcGt</option>
-  <option value="ebcLt">EbcLt</option>
-  <option value="yeast">Yeast</option>
-  <option value="brewedBefore">Brewed Before</option>
-  <option value="brewedAfter">brewed After</option>
-  <option value="hops">Hops</option>
-  <option value="ebcLt">EbcLt</option>
-  <option value="malt">Malt</option>
-  <option value="ids">Ids</option>
-
-</select>
-
-<input type="text" [(ngModel)]="searchField" (keyup)="search()" />
-
-<div *ngFor="let beer of beers">
-  {{ beer | json }}
+<div class="form-group">
+  <label for="selectOptions"></label>
+  <select class="form-control" [(ngModel)]="type">
+    <option value="name">Name</option>
+    <option value="food">Food</option>
+    <option value="abvGt">AbvGt</option>
+    <option value="abvLt">AbvLt</option>
+    <option value="ibuGt">IbuGt</option>
+    <option value="ibuLt">IbuLt</option>
+    <option value="ebcGt">EbcGt</option>
+    <option value="ebcLt">EbcLt</option>
+    <option value="yeast">Yeast</option>
+    <option value="brewedBefore">Brewed Before</option>
+    <option value="brewedAfter">brewed After</option>
+    <option value="hops">Hops</option>
+    <option value="ebcLt">EbcLt</option>
+    <option value="malt">Malt</option>
+    <option value="ids">Ids</option>
+  </select>
 </div>
+
+<div class="form-group">
+  <input type="text" class="form-control" [(ngModel)]="searchField" (keyup)="search()" />
+</div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Tagline</th>
+      <th scope="col">ABV</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let beer of beers">
+      <th scope="row">{{ beer.name }}</th>
+      <th scope="row">{{ beer.tagline }}</th>
+      <th scope="row">{{ beer.abv }}</th>
+    </tr>
+  </tbody>
+</table>
 
 <nav aria-label="Page navigation example">
   <ul class="pagination">
