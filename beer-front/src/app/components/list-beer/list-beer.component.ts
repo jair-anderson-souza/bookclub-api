@@ -23,6 +23,8 @@ export class ListBeerComponent implements OnInit {
   public ngOnInit() {
     this.beerService.searchBeers(this.page, this.size, this.beerFilter).subscribe((data) => {
       this.beers = data;
+      console.log(data);
+      
     });
   }
 

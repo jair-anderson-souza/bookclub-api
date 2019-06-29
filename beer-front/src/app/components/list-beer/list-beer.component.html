@@ -1,51 +1,63 @@
-<div class="form-group">
-  <label for="selectOptions"></label>
-  <select class="form-control" [(ngModel)]="type">
-    <option value="name">Name</option>
-    <option value="food">Food</option>
-    <option value="abvGt">AbvGt</option>
-    <option value="abvLt">AbvLt</option>
-    <option value="ibuGt">IbuGt</option>
-    <option value="ibuLt">IbuLt</option>
-    <option value="ebcGt">EbcGt</option>
-    <option value="ebcLt">EbcLt</option>
-    <option value="yeast">Yeast</option>
-    <option value="brewedBefore">Brewed Before</option>
-    <option value="brewedAfter">brewed After</option>
-    <option value="hops">Hops</option>
-    <option value="ebcLt">EbcLt</option>
-    <option value="malt">Malt</option>
-    <option value="ids">Ids</option>
-  </select>
+<div class="container">
+  <div class="form-group">
+    <label for="selectOptions"></label>
+    <select class="form-control" [(ngModel)]="type">
+      <option value="name">Name</option>
+      <option value="food">Food</option>
+      <option value="abvGt">AbvGt</option>
+      <option value="abvLt">AbvLt</option>
+      <option value="ibuGt">IbuGt</option>
+      <option value="ibuLt">IbuLt</option>
+      <option value="ebcGt">EbcGt</option>
+      <option value="ebcLt">EbcLt</option>
+      <option value="yeast">Yeast</option>
+      <option value="brewedBefore">Brewed Before</option>
+      <option value="brewedAfter">brewed After</option>
+      <option value="hops">Hops</option>
+      <option value="ebcLt">EbcLt</option>
+      <option value="malt">Malt</option>
+      <option value="ids">Ids</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" [(ngModel)]="searchField" (keyup)="search()" />
+  </div>
+
+  <div class="table-responsive">
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Tagline</th>
+          <th scope="col">ABV</th>
+          <th scope="col">First Brewed</th>
+          <th scope="col">Image</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="beers?.length > 0">
+        <tr *ngFor="let beer of beers">
+          <th scope="row">{{ beer.name }}</th>
+          <th scope="row">{{ beer.tagline }}</th>
+          <th scope="row">{{ beer.abv }}</th>
+          <th scope="row">{{ beer.first_brewed }}</th>
+          <th scope="row">
+            sdf
+            <!-- <img [src]="beer.image_url" alt="Beer Image"> -->
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <nav aria-label="Page navigation example" style="margin-left: 0 ; margin-right: 0;">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
 </div>
-
-<div class="form-group">
-  <input type="text" class="form-control" [(ngModel)]="searchField" (keyup)="search()" />
-</div>
-
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Tagline</th>
-      <th scope="col">ABV</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let beer of beers">
-      <th scope="row">{{ beer.name }}</th>
-      <th scope="row">{{ beer.tagline }}</th>
-      <th scope="row">{{ beer.abv }}</th>
-    </tr>
-  </tbody>
-</table>
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
