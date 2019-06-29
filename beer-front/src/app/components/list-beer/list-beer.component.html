@@ -1,33 +1,40 @@
 <div class="container">
-  <div class="form-group">
-    <label for="selectOptions"></label>
-    <select class="form-control" [(ngModel)]="type">
-      <option value="name">Name</option>
-      <option value="food">Food</option>
-      <option value="abvGt">AbvGt</option>
-      <option value="abvLt">AbvLt</option>
-      <option value="ibuGt">IbuGt</option>
-      <option value="ibuLt">IbuLt</option>
-      <option value="ebcGt">EbcGt</option>
-      <option value="ebcLt">EbcLt</option>
-      <option value="yeast">Yeast</option>
-      <option value="brewedBefore">Brewed Before</option>
-      <option value="brewedAfter">brewed After</option>
-      <option value="hops">Hops</option>
-      <option value="ebcLt">EbcLt</option>
-      <option value="malt">Malt</option>
-      <option value="ids">Ids</option>
-    </select>
+  <div class="row">
+    <h4 class="title">Beer's List</h4>
+  </div>
+  <div class=" form-group">
+    <input type="text" placeholder="Search here" class="form-control" [(ngModel)]="searchField" (keyup)="search()" />
+
+    <div class="form-group">
+      <label for="selectOptions"></label>
+      <select class="form-control" [(ngModel)]="type">
+        <option value="name">Name</option>
+        <option value="food">Food</option>
+        <option value="abvGt">AbvGt</option>
+        <option value="abvLt">AbvLt</option>
+        <option value="ibuGt">IbuGt</option>
+        <option value="ibuLt">IbuLt</option>
+        <option value="ebcGt">EbcGt</option>
+        <option value="ebcLt">EbcLt</option>
+        <option value="yeast">Yeast</option>
+        <option value="brewedBefore">Brewed Before</option>
+        <option value="brewedAfter">brewed After</option>
+        <option value="hops">Hops</option>
+        <option value="ebcLt">EbcLt</option>
+        <option value="malt">Malt</option>
+        <option value="ids">Ids</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-sm-4">
+
   </div>
 
-  <div class="form-group">
-    <input type="text" class="form-control" [(ngModel)]="searchField" (keyup)="search()" />
-  </div>
 
   <div class="table-responsive">
 
     <table class="table">
-      <thead class="thead-dark">
+      <thead>
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Tagline</th>
@@ -43,7 +50,6 @@
           <th scope="row">{{ beer.abv }}</th>
           <th scope="row">{{ beer.first_brewed }}</th>
           <th scope="row">
-            sdf
             <!-- <img [src]="beer.image_url" alt="Beer Image"> -->
           </th>
         </tr>
@@ -51,13 +57,23 @@
     </table>
   </div>
 
-  <nav aria-label="Page navigation example" style="margin-left: 0 ; margin-right: 0;">
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  <nav style="text-align: center; width: 100px;">
+    <ul class="pagination" name="page">
+      <li class="page-item">
+        <a class="page-link" [routerLink]="" (click)="backIndex();">Prev</a>
+      </li>
+      <li class=" page-item">
+        <a [routerLink]="" class="page-link">1</a>
+      </li>
+      <li class=" page-item" (click)="changePage(2);">
+        <a [routerLink]="" class="page-link">2</a>
+      </li>
+      <li class=" page-item">
+        <a [routerLink]="" class="page-link" (click)="changePage(3);">3</a>
+      </li>
+      <li class="page-item">
+        <a [routerLink]="" class="page-link" (click)="goToPage();">Next</a>
+      </li>
     </ul>
   </nav>
 </div>
