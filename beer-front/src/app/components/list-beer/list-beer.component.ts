@@ -5,7 +5,7 @@ import { BeerService } from 'src/services/beer.service';
 @Component({
   selector: 'app-list-beer',
   templateUrl: './list-beer.component.html',
-  styleUrls: ['./list-beer.component.sass']
+  styleUrls: ['./list-beer.component.scss']
 })
 
 export class ListBeerComponent implements OnInit {

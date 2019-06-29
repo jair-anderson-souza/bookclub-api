@@ -1,25 +1,72 @@
-<form #formLogin="ngForm">
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6  align-middle">
+      <form #formLogin="ngForm" class="jumbotron jumbotron-fluid" style="margin: 0 auto;">
+        <div class="container">
+          <h1>Login Page</h1>
 
-  <div>
-    <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" [(ngModel)]="user.username" name="username" required>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <div class="control">
+              <input class="form-control" type="text" placeholder="Enter Username" [(ngModel)]="user.username"
+                name="username" id="username" required>
+            </div>
+          </div>
 
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" [(ngModel)]="user.password" name="psw" required>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="control">
+              <input class="form-control" type="password" placeholder="Enter Password" [(ngModel)]="user.password"
+                name="password" id="password" required>
+            </div>
+          </div>
 
-    <button  [disabled]="formLogin.form.invalid" (click)="login(); formLogin.reset();">Login</button>
-  </div>
+          <button [disabled]="formLogin.form.invalid" class="btn btn-success btn-lg"
+            (click)="login(); formLogin.reset();">Login</button>
 
-</form>
+        </div>
 
-<div *ngIf="this.errorService.count() > 0">
-  <div *ngFor="let message of this.errorService.getMessages()">
-    <p>{{ message }}</p>
+        <div *ngIf="this.errorService.count() > 0">
+          <div *ngFor="let message of this.errorService.getMessages()">
+            <p class="alert alert-danger">{{ message }}</p>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+    <div class="col-3"></div>
+
   </div>
 </div>
 
-<br/>
-<br/>
-<br/>
 
-<button (click)="irParaCadastro()">Ir para Cadastro</button>
+
+<!-- <form #formLogin="ngForm">
+    
+    <div>
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" [(ngModel)]="user.username" name="username" required>
+    
+    <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" [(ngModel)]="user.password" name="psw" required>
+
+      <button [disabled]="formLogin.form.invalid" (click)="login(); formLogin.reset();">Login</button>
+    </div>
+    
+  </form>
+  
+  <div *ngIf="this.errorService.count() > 0">
+    <div *ngFor="let message of this.errorService.getMessages()">
+      <p>{{ message }}</p>
+    </div>
+  </div>
+
+  <br />
+  <br />
+  <br />
+
+  <button (click)="irParaCadastro()">Ir para Cadastro</button> -->
+<!-- </div> -->
