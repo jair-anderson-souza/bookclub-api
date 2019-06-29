@@ -1,15 +1,28 @@
-.container {
-  font-family: Helvetica, Arial, sans-serif;
+.fullpage {
+  width: 100%;
+  min-height: 100%;
 }
+
+.container{
+  margin-top: 10%;
+  height: 50px;
+  width: 50%;
+}
+
 form {
-  border-radius: 5px;
+  // background-color: #FFAB0E;
+  border-radius: 7px;
+  border: 1px solid;
+  padding: 20px;
+  box-shadow: 1px 1px;
+  
 }
 
 .container h1 {
   text-align: center;
 }
 
-button {
+  button {
   margin-top: 20px;
   width: 100%;
 }
